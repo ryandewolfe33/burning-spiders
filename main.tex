@@ -24,17 +24,17 @@
 
 \abstract{
 Burning a graph is a process that models the spread of information in networks.
-The process takes place over a discrete number of rounds, and the smallest number of round to burn a graph is the burning number of the graph.
+The process takes place over a discrete number of rounds, and the minimum number of rounds required to burn a graph is the burning number.
 The burning number conjecture is that every graph with $n$ vertices has a burning number at most $\lceil \sqrt{n}\ \rceil$.
-It has been shown that resolving the burning conjecture for all graphs is equivalent to resolving it for trees.
+It has been shown that resolving the burning number conjecture for all graphs is equivalent to resolving it for trees.
 A tree is called a spider if it has exactly one vertex with degree strictly greater than $2$.
 This work summarizes recent progress by proving the burning number conjecture for spiders.
 }
 
 \section{Introduction}
-The process of burning a graph was introduced in \cite{burning_intro} to model the spread of information or epidemics on a graph.
+The process of burning a graph was introduced in \cite{burning_intro} to model the spread of information or epidemics.
 The burning process take place on graph $G$ and in discrete rounds $t \geq 0$. 
-At $t=0$, all the vertices of a graph are unburned.
+At $t=0$, all the vertices of the graph are unburned.
 In each round $t \geq 1$ there are two actions.
 First, every burned vertex burns all of its neighbors.
 Second, an unburned vertex is selected to be burned.
@@ -43,7 +43,8 @@ The process ends when all vertices are burned.
 The \textit{burning number} of a graph, denoted $b(G)$, is defined to be the minimum number of rounds required to burn the graph $G$.
 Let $n: G \to \mathbb{N}$ be a function counting the number of vertices of $G$, defined as $n(G) = |V(G)|$.
 The \textit{burning number conjecture} \cite{burning_intro} is that for all connected graphs, $b(G) \leq \lceil \sqrt{n(G)}\ \rceil$.
-This conjecture is currently open, although there has been progress. we direct the reader to a the survey \cite{burning_survey} for a general discussion.
+This conjecture is currently open, although there has been progress.
+We direct the interested reader to the survey \cite{burning_survey} for a general discussion.
 Norin and Turcotte \cite{asymptotic_bnc} recently showed that the burning number conjecture hold asymptotically, and the best current bound is $\sqrt{4n(g) \slash 3} + 1$ \cite{best_bnc}. 
 It was shown in \cite{burning_intro} that if the burning number conjecture is satisfied in trees, then it is satisfied for all graphs.
 Paths acheive the bound $\lceil \sqrt{n}\ \rceil$, showing that if the burning number conjecture is true it is tight.

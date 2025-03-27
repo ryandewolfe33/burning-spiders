@@ -41,54 +41,52 @@ Second, an unburned vertex is selected to be burned.
 The process ends when all vertices are burned.
 
 The \textit{burning number} of a graph, denoted $b(G)$, is defined to be the minimum number of rounds required to burn the graph $G$.
+We call the sequence of vetices chosen to be burned in action two a \textit{burning sequence}, and the burning number can be equivalently defined as the length of the shortest burning sequence.
 Let $n: G \to \mathbb{N}$ be a function counting the number of vertices of $G$, defined as $n(G) = |V(G)|$.
 The \textit{burning number conjecture} \cite{burning_intro} is that for all connected graphs, $b(G) \leq \lceil \sqrt{n(G)}\ \rceil$.
 This conjecture is currently open, although there has been progress.
 We direct the interested reader to the survey \cite{burning_survey} for a general discussion.
-Norin and Turcotte \cite{asymptotic_bnc} recently showed that the burning number conjecture hold asymptotically, and the best current bound is $\sqrt{4n(g) \slash 3} + 1$ \cite{best_bnc}. 
+Norin and Turcotte \cite{asymptotic_bnc} recently showed that the burning number conjecture hold asymptotically, and the best current bound is $\sqrt{4n(g) \slash 3} + 1$ proved in \cite{best_bnc}. 
 It was shown in \cite{burning_intro} that if the burning number conjecture is satisfied in trees, then it is satisfied for all graphs.
-Paths acheive the bound $\lceil \sqrt{n}\ \rceil$, showing that if the burning number conjecture is true it is tight.
+Paths acheive the bound $\lceil \sqrt{n}\ \rceil$, showing that if the burning number conjecture would be tight.
 
 This report summarizes the contribution of \cite{burning_spiders} towards the burning number conjecture.
 A graph $G$ is a \textit{spider} if it is a connected tree and there is a single vertex with degree strictly greater than two.
-The main result is Theorem \ref{thm:main} (Theorem 7 of \cite{burning_spiders}), which simply confirms that spider graphs satisfy the burning number conjecture. 
+The main result is Theorem \ref{thm:main} (Theorem 7 of \cite{burning_spiders}), which confirms that spider graphs satisfy the burning number conjecture. 
 
 \section{Preliminaries}
 For this report, we consider all graph to be simple, finite, and undirected.
-A \textit{tree} is a graph that does not have any cycles, \textit{forest} is a disjoint union of trees, and a \textit{path-forest} is a disjoint union of paths.
-Since a path is a tree, a path-forest is also a forest, which is also a tree.
+A \textit{tree} is a graph that does not contain any cycles, a \textit{forest} is a disjoint union of trees, and a \textit{path-forest} is a disjoint union of paths.
 Let $G$ be a graph, $v \in V(G)$, and $r$ a positive integer.
-Let $N_{r}[v]$ denote the closed neighborhood of $v$ with radius $r$; defined as the set of vertices $u$ such that there is a path from $v$ to $u$ with length less than or equal to $r$.
-By an abuse of notation, we use $G - N_r[v]$ to represent the graph induced by the set of vertices $V(G) \setminus N_r[v]$. 
-
+Let $N_{r}[v]$ denote the closed neighborhood of $v$ with radius $r$, defined as the set of vertices $u$ such that there is a path from $v$ to $u$ with length less than or equal to $r$.
+We let each vertex have a path of length $0$ to itself in order to satisfy the requirements of a metric.
+We use $G - N_r[v]$ to represent the graph induced by the set of vertices $V(G) \setminus N_r[v]$. 
 
 \begin{lemma} \label{lem:burntocover}
-    For any graph $G$, $b(G) \leq M$ for some integer $M$ if and only if there exists an integer $k$, satisfying $1 \leq k \leq M$, such that
+    A graph $G$ satisfies $b(G) \leq M$ for some integer $M$ if and only if there exists an integer $k$, satisfying $1 \leq k \leq M$, such that
     \begin{equation}
         V(G) = \bigcup_{i = 1}^k N_{M-i}[v_i] \label{eq:burntocover}
     \end{equation}
     for some sequence of vertices $(v_i)_1^k$.
 \end{lemma}
-
 \begin{proof}
-    Let $G$ be a graph with and $(v_i)_1^M$ a burning sequence for $G$.
-    Then the fire started at vertex $v_i$ in round $i$ will spread to vertices in the neighborhood $N_{M-i}[v_i]$ by the end of round $M$.
-    And since $(v_i)_1^M$ burns the graph, let $k = M$ and $V(G) = \cup_{i=1}^M N_{M-i}[v_i]$.
+    Let $G$ be a graph and $(v_i)_1^M$ a burning sequence for $G$.
+    Then the fire started at vertex $v_i$ in round $i$ will spread to $N_{M-i}[v_i]$ by the end of round $M$.
+    Since $(v_i)_1^M$ burns the graph, let $k = M$ and $V(G) = \cup_{i=1}^M N_{M-i}[v_i]$.
     This concludes the forward implication.
 
-    Let $(v_i)_1^k$ be a seequence in $V(G)$ that satisfies equation \ref{eq:burntocover}.
-    Let $(v_j)_1^M$ be a sequence in $V(G)$ where $v_j = v_i$ if $j \leq k$ and $v_j$ is any vertex not yet chosen otherwise.
-    The fire started at vertex $v_j$ in round $j$ will spread to $N_{M-j}[v_j]$ by round $M$.
-    Since $(v_j)_1^M$ burns at least $\cup_{j=1}^M N_{M-j}[v_j] = V(G)$, it is a burning sequnce.
+    Let $(v_i)_1^k$ be a sequence in $V(G)$ that satisfies equation \ref{eq:burntocover}.
+    Let $(u_j)_1^M$ be a sequence in $V(G)$ where $u_j = v_i$ if $j \leq k$ and the other $u_j$ are any vertex that does not appear earlier in the sequence.
+    The fire started at vertex $u_j$ in round $j$ will spread to $N_{M-j}[u_j]$ by round $M$.
+    Since $(u_j)_1^M$ burns at least $\cup_{j=1}^M N_{M-j}[u_j] = V(G)$, it is a burning sequnce.
     Thus, $b(G) \leq M$.
 \end{proof}
 
 \begin{corollary} \label{cor:leftovers}
     Let $G$ be a graph and $v \in V(G)$.
     Let $\alpha$ be a positive integer.
-    If $b(G - N_\alpha[v]) = \alpha - 1$, then $b(G) \leq \alpha$.
+    If $b(G - N_\alpha[v]) \leq \alpha - 1$, then $b(G) \leq \alpha$.
 \end{corollary}
-
 \begin{proof}
     By applying the forward direction of Lemma \ref{lem:burntocover}, there exists some sequence of vertices such that $V(G-N_\alpha[v]) = \cup_{i=1}^{\alpha-1} N_{\alpha-1-i}[v_i]$.
     Let $v_\alpha = v$ and add $N_{\alpha}[v]$ to both sides to get $V(G) = \cup_{i=1}^\alpha N_{\alpha - i}[v_i]$.
@@ -96,7 +94,8 @@ By an abuse of notation, we use $G - N_r[v]$ to represent the graph induced by t
 \end{proof}
 
 Corollary \ref{cor:leftovers} means that we can bound the burning number of a graph by removing a ``large" neighborhood with radius $\alpha$ and proving the leftovers can be burned in $\alpha - 1$ rounds.
-This method is central to proving many of the following statements.
+This technique is central to proving many of the following statements.
+For proofs the upcoming Lemma \ref{lem:path_forest} and Lemma \ref{lem:family}, we refer to \cite{burning_spiders} (Lemmas 2 and 5 respectively).
 
 \begin{lemma} \label{lem:path_forest}
     If $G$ is a path-forest with $t$ components then $b(G) \leq \lfloor \frac{n(G)}{2t} \rfloor + t$.
@@ -118,8 +117,6 @@ TODO: double check the $t \geq 1$ condition is just $G$ being non-empty.
     If $b(G) \leq \lceil \sqrt{n(G)}\ \rceil$ for all $G \in \mathcal{G} \backslash \hat{\mathcal{G}}$, then $b(G) \leq \lceil \sqrt{n(G)}\ \rceil$ for all $G \in \mathcal{G}$.
 \end{lemma}
 
-For proofs of Lemma \ref{lem:path_forest} and Lemma \ref{lem:family}, we refer to \cite{burning_spiders} (Lemmas 2 and 5 respectively).
-
 \section{Spiders}
 Recall that a graph $G$ is a spider if it is a connected tree that has a single vertex with degree strictly greater than two.
 We call this vertex the \textit{head} of the spider.
@@ -128,7 +125,6 @@ An \textit{arm} of a spider is a component of the path forest induced by deletin
 \begin{lemma} \label{lem:small_spiders}
     If G is a spider and $n(G) \leq 25$, then $b(G) \leq \lceil \sqrt{n(G)}\ \rceil$.
 \end{lemma}
-
 \begin{proof}
     Let $G$ be a spider with head $h$.
     Let $\alpha = \lceil \sqrt{n(G)}\ \rceil$.
@@ -606,7 +602,6 @@ An \textit{arm} of a spider is a component of the path forest induced by deletin
 \begin{theorem} \label{thm:main}
     If $G$ is a spider then $b(G) \leq \lceil \sqrt{n(G)}\ \rceil$.
 \end{theorem}
-
 \begin{proof}
     Let $G$ be a spider.
     If $n(G) \leq 25$, we apply Lemma \ref{lem:small_spiders} and conclude $b(G) \leq \lceil \sqrt{n(G)}\ \rceil$.

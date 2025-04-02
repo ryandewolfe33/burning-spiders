@@ -48,7 +48,7 @@
 
 \begin{frame}{Preliminaries}
 \begin{itemize}
-\item A tree is a \textit{spider} if it has exactly one vertex with degree strictly greater than $3$.
+\item A tree is a \textit{spider} if it has exactly one vertex with degree strictly greater than $2$.
 \item The unique vertex with degree strictly greater than $3$ is called the \textit{head} and is denoted $h$.
 \end{itemize}
 \vspace{2em}
@@ -157,13 +157,14 @@
         Let $G$ be a graph and $v \in V(G)$. Let $k$ a positive integer.
         If $b(G - N_{k-1}[v]) \leq k - 1$ then $b(G) \leq k$.
     \end{lemma}
-
-    This lemma is used in an inductive step in the proofs of the following lemmas and is used often in the main theorem.
+\begin{itemize}
+\item This lemma is used in an inductive step in the proofs of the following lemmas and is used often in the main theorem.
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Preliminaries}
     \begin{lemma}[Path-Forest Lemma]
-        If $G$ is a path-forest with $t$ components then $b(G) \leq \lfloor \frac{n(G)}{2t} \rfloor + t$.
+        If $G$ is a path-forest with $t$ components then $b(G) \leq \left\lfloor \frac{n(G)}{2t} \right\rfloor + t$.
     \end{lemma}
 \end{frame}
 
@@ -171,23 +172,23 @@
     \begin{lemma}[Graph Family Lemma]
         Let $\mathcal{G}$ be a set of connected graphs.
         Let $\hat{\mathcal{G}} \subseteq G$ with the following condition.
-        For every $G \in \hat{\mathcal{G}}$, there exists $v \in V(G)$ and $r \leq \lceil \sqrt{n(G)}\ \rceil - 1$ such that at least one of the followng conditions are satisfied.
+        For every $G \in \hat{\mathcal{G}}$, there exists $v \in V(G)$ and $r \leq \left\lceil \sqrt{n(G)}\ \right\rceil - 1$ such that at least one of the followng conditions are satisfied.
         \begin{enumerate}
             \item $N_r[v] = V(G).$
-            \item $|N_r[v]| \geq 2\lceil \sqrt{n(G)}\ \rceil - 1$ and the induced subgraph\\ $G[V(G) \setminus N_r[v]]$ is in  $\mathcal{G}$.
+            \item $|N_r[v]| \geq 2 \left\lceil \sqrt{n(G)}\ \right\rceil - 1$ and the induced subgraph\\ $G[V(G) \setminus N_r[v]]$ is in  $\mathcal{G}$.
         \end{enumerate}
-        If $b(G) \leq \lceil \sqrt{n(G)}\ \rceil$ for all $G \in \mathcal{G} \backslash \hat{\mathcal{G}}$, then $b(G) \leq \lceil \sqrt{n(G)}\ \rceil$ for all $G \in \mathcal{G}$.
+        If $b(G) \leq \left\lceil \sqrt{n(G)}\ \right\rceil$ for all $G \in \mathcal{G} \backslash \hat{\mathcal{G}}$, then $b(G) \leq \left\lceil \sqrt{n(G)}\ \right\rceil$ for all $G \in \mathcal{G}$.
     \end{lemma}
 \end{frame}
 
 \begin{frame}{Main Theorem}
     \begin{theorem}[Theorem 7 in Bonato and Lidbetter (2019)]
-        If $G$ is a spider then $b(G) \leq \lceil \sqrt{n(G)}\ \rceil$.
+        If $G$ is a spider then $b(G) \leq \left\lceil \sqrt{n(G)}\ \right\rceil$.
     \end{theorem}
 \end{frame}
 
 \begin{frame}{Proof of Main Theorem}
-    Let $\alpha = \lceil \sqrt{n(G)} \rceil$.
+    Let $\alpha = \left\lceil \sqrt{n(G)}\ \right\rceil$.
     The proof procedes as follows:
     \begin{enumerate}
         \item Check all spides with at most $25$ vertices.

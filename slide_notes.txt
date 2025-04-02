@@ -1,0 +1,17 @@
+4:
+- Proved by considering burning as a covering problem
+
+5:
+- Proof idea is that to match balls to components and an induction on the number of vertices.
+
+6:
+- The value in condition (2) is exactly what is required to make sure the alpha of the remainder is one less.
+- Proof by induction on step (2) until its in G
+
+12:
+- Bullet 2, fewer vertices means Path-Forest Lemma Applies.
+
+16:
+- Bullet 3, this is the alpha-1 arms of length alpah + 1 case,
+  we are applying the path-forest lemma to G burn starting at a vertex adjacent to the head.
+
